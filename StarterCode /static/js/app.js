@@ -49,24 +49,21 @@ function buildplots(sample)
   {
     var samples = sample_data.samples;
     var results = samples.filter(s=>s.id == sample);
-    console.log("results");
     console.log(results);
-        
-    var graphData = results[0];
-
-    console.log(graphData)
+    var plot_data = results[0];
+    console.log(plot_data)
 
 
 //Grab top 10 OTUs for the plots
-    var sample_value = graphData.sample_value;
-    var otu_id = graphData.otu_id;
-    var otu_labels = graphData.otu_labels;
+    var sample_values = plot_data.sample_value;
+    var otu_ids = plot_data.otu_id;
+    var otu_labels = plot_data.otu_labels;
 
 // Build Bar chart
     var bar_trace =
     {
-        x: sample_value.slice(0,10),
-        y: otu_id.slice(0,10).map(value=>`OTU ID ${value}`).reverse(),
+        x: sample_values.slice(0,10),
+        y: otu_ids.slice(0,10).map(value=>`OTU ID ${value}`).reverse(),
         type: "bar",
         text: otu_labels.slice(0,10).reverse(),
         orientation: "h"
@@ -91,7 +88,7 @@ var bubble_trace =
   mode: "markers",
   marker:
   {
-   color: otu_id, 
+   color: otu_ids, 
    size: sample_value
 
   },
