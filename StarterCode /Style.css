@@ -1,0 +1,19 @@
+.jumbotron 
+{
+    background: url('../bacteria.png' );
+    opacity: 0.7;
+    background-size: cover;
+    background-size: contain;
+
+}
+h1 { 
+    color: rgb(255, 254, 254)!important; 
+    background: rgb(0, 0, 0) !important;
+    opacity: 0.8;
+
+   }
+h2 { 
+    color: rgb(255, 255, 255)!important; 
+    background: rgb(2, 2, 2) !important;
+    opacity: 0.8;
+   }
