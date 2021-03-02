@@ -1,22 +1,3 @@
-function init()
-{
-    var dropdownMenu = d3.select("#selDataset");
-    d3.json("samples.json").then((sample_data)=>
-        {
-            console.log(sample_data.names);
-            var sampleNames = sample_data.names;
-            sampleNames.forEach((sample)=>
-            {
-                dropdownMenu.append("option").text(sample).property("value",sample);
-            });
-          //build inital graphs with the first sample in list
-            var first_sample = sampleNames[0]
-            build(first_sample)
-            buildGraph(first_sample)
-        });
-}
-init();
-
 //Build Demographic table
 function build(sample)
 {
@@ -54,14 +35,14 @@ function buildGraph(sample)
         
       //Grab top 10 OTUs for the plots
         var sample_values = graphData.sample_values;
-        var otu_id = graphData.otu_ids;
+        var otu_ids = graphData.otu_ids;
         var otu_labels = graphData.otu_labels;
       
        // Build Bar chart
         var barTrace = 
         {
           x: sample_values.slice(0,10).reverse(),
-          y: otu_id.slice(0,10).map(value=>`OTU ID ${value}`).reverse(),
+          y: otu_ids.slice(0,10).map(value=>`OTU ID ${value}`).reverse(),
           type: "bar",
           text: otu_labels.slice(0,10).reverse(),
           orientation: "h"
@@ -96,7 +77,32 @@ function buildGraph(sample)
           yaxis: { title: "sample_value"}
         };
         Plotly.newPlot("bubble", bubbleData, bubbleLayout);
+
     });
 };
+
+function init()
+{
+    var dropdownMenu = d3.select("#selDataset");
+    d3.json("samples.json").then((sample_data)=>
+        {
+            console.log(sample_data.names);
+            var sampleNames = sample_data.names;
+            sampleNames.forEach((sample)=>
+            {
+                dropdownMenu.append("option").text(sample).property("value",sample);
+            });
+          //build inital graphs with the first sample in list
+            var first_sample = sampleNames[0]
+            build(first_sample)
+            buildGraph(first_sample)
+        });
+}
+        function optionChanged(newSample) {
+          updateMetadata(newSample);
+          updateCharts(newSample);
+        }
+
+init();
 
 
