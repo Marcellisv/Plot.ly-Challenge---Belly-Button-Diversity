@@ -1,6 +1,6 @@
 .jumbotron 
 {
-    background: url('../bacteria.png' );
+    background: url('bacteria.png' );
     opacity: 0.7;
     background-size: cover;
     background-size: contain;

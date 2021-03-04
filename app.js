@@ -98,9 +98,9 @@ function init()
             buildGraph(first_sample)
         });
 }
-        function optionChanged(newSample) {
-          updateMetadata(newSample);
-          updateCharts(newSample);
+        function optionChanged(Sample) {
+          updateMetadata(Sample);
+          updateCharts(Sample);
         }
 
 init();
