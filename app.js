@@ -1,23 +1,3 @@
-function init()
-{
-    var dropdownMenu = d3.select("#selDataset");
-    d3.json("samples.json").then((sample_data)=>
-        {
-            console.log(sample_data.names);
-            var sampleNames = sample_data.names;
-            sampleNames.forEach((sample)=>
-            {
-                dropdownMenu.append("option").text(sample).property("value",sample);
-            });
-          //build inital graphs with the first sample in list
-            var first_sample = sampleNames[0]
-            build(first_sample)
-            buildGraph(first_sample)
-        });
-}
-        
-init();
-
 //Build Demographic table
 function build(sample)
 {
@@ -100,6 +80,27 @@ function buildGraph(sample)
 
     });
 };
+
+//Populate dropdown and create option change to have tables update accoriding to ID 
+function init()
+{
+    var dropdownMenu = d3.select("#selDataset");
+    d3.json("samples.json").then((sample_data)=>
+        {
+            console.log(sample_data.names);
+            var sampleNames = sample_data.names;
+            sampleNames.forEach((sample)=>
+            {
+                dropdownMenu.append("option").text(sample).property("value",sample);
+            });
+          //build inital graphs with the first sample in list
+            var first_sample = sampleNames[0]
+            build(first_sample)
+            buildGraph(first_sample)
+        });
+}
+        
+init();
 
 function optionChanged(sample) 
         {
